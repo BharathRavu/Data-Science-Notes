@@ -29,7 +29,7 @@ Univariate linear regression  Linear regression with one independent variable (o
 <meta itemprop="description" content="Regression is fitting a line to our data; Discovering the hidden relationship between input and output.
 Univariate linear regression  Linear regression with one independent variable (or feature). a training example: $(x^{(i)},y^{(i)})$, where $i=1,\ldots,m$. $m$ represents the number of training examples. $X$ - space of input variables; $Y$ - space of output variables $h: X \mapsto Y$, where $h$ is a hypothesis. Hypothesis: $h_{\theta} (x)=\theta_0 &#43; \theta_1 x $; Shorthand notation: $h(x)$.">
 
-<meta itemprop="wordCount" content="1045">
+<meta itemprop="wordCount" content="1033">
 
 
 
@@ -139,9 +139,7 @@ where $\alpha$ is the learning rate</li>
 <p>All the training data is used in calculating $J$. We considered the average of the gradients of all the data points in the training set to update parameters. One epoch equals one gradient descent step. It converges to minima directly</p>
 <h4 id="stochastic-gradient-descent-sgd">Stochastic gradient descent (SGD)</h4>
 <p>If our training data set is so huge, considering all the points in the training data to calculate $J$ would not be efficient. In stochastic gradient descent, we consider the gradient of one example at a time in single step. Here, one epoch means, considering all the points one after the other to parameters.</p>
-<pre><code>for i in m
-    calculate gradient of (x(i), y(i)) and update parameters
-</code></pre><p>So one epoch has $m$ time steps. Since we consider only one example a time, the cost will fluctuate. It will not necessarily decrease, but in the long run the cost would decrease with fluctuations. Also, it will never reach the minimum because of it&rsquo;s fluctuating nature. When the dataset is large, SGD can be used to achieve faster convergence as it updates parameters more frequently.</p>
+<p>So one epoch has $m$ time steps. Since we consider only one example a time, the cost will fluctuate. It will not necessarily decrease, but in the long run the cost would decrease with fluctuations. Also, it will never reach the minimum because of it&rsquo;s fluctuating nature. When the dataset is large, SGD can be used to achieve faster convergence as it updates parameters more frequently.</p>
 <h4 id="mini-batch-gradient-descent">Mini batch gradient descent</h4>
 <p>The problem with SGD is that, we can not apply vectorized implementation, leading to slower computations. To address this issue, a mix of batch gradient method and SGD are used. In this method, we divide the whole batch in mini-batches of fixed size. Here, one epoch means, calculating the mean gradient of the mini batches one after the other for all the mini-batches to update parameters. Similar to SGD, the cost will fluctuate.</p>
 <h2 id="multivariate-linear-regression">Multivariate Linear Regression</h2>
@@ -263,14 +261,6 @@ X =
   
 <ul class="sub-menu">
 <li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/1/">Correlation</a></li>
-</ul>
-  
-</li>
-
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/temp/">Temps</a>
-  
-<ul class="sub-menu">
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/temp/job_search/">Job-search</a></li>
 </ul>
   
 </li>

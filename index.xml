@@ -57,14 +57,5 @@ Classification  Email: spam / not spam Online transactions: Fraudulent (yes/no) 
       <description>We should look at the correlation of our features with our target but also at the correlation between our different features. Correlation is the degree to which things move together The amount of sun and the amount of icecream tend to move together; if one is high, the other also tends to be high and if one is low the other also tends to be low. This is positive correlation.</description>
     </item>
     
-    <item>
-      <title>Job-search</title>
-      <link>https://bharathravu.github.io/data-science-notes/temp/job_search/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://bharathravu.github.io/data-science-notes/temp/job_search/</guid>
-      <description>Section 1: Artificial Intelligence, Machine Learning, and the New Job Hunting Landscape  hopefully doing work that we enjoy and we find it meaningful and some opportunities for some advancements We are going to work on:  Identifying your big six skills Building an excellent resume LinkedIn Profile and cover letter Building technology into your job research your interviewing skills Networking on the job hunt Negotiating your salary    Section 2: Resumes in a World of AI and Applicant Tracking Systems (ATSs)  Applicant Tracking System (ATS): Software package used by companies to recieve, analyze, and tracking incoming candidates.</description>
-    </item>
-    
   </channel>
 </rss>
