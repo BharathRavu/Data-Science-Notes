@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Artificial neural networks - Data Science Notes</title>
+<meta name="generator" content="Hugo 0.74.3" />
+<link href="https://bharathravu.github.io/data-science-notes//index.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/3_ann/">
+<link rel="stylesheet" href="https://bharathravu.github.io/data-science-notes/css/theme.min.css">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://bharathravu.github.io/data-science-notes/css/chroma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="https://bharathravu.github.io/data-science-notes/js/bundle.js"></script><style>
+:root {}
+</style>
+<meta property="og:title" content="Artificial neural networks" />
+<meta property="og:description" content="Human brain has approximately 86 billion neuros which are connected to each other via synapses. Neurons receive signals from other neurons via their dendrites and transmit their output through their axons. A neuron only fires if the total signal received exceeds a certain threshold value. &ldquo;Neural pathways are strengthened every time that they are used&rdquo; -Donald hebb. If two neurons fire together, their connection is enhanced. The strength is referred to as the weight." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/3_ann/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Artificial neural networks"/>
+<meta name="twitter:description" content="Human brain has approximately 86 billion neuros which are connected to each other via synapses. Neurons receive signals from other neurons via their dendrites and transmit their output through their axons. A neuron only fires if the total signal received exceeds a certain threshold value. &ldquo;Neural pathways are strengthened every time that they are used&rdquo; -Donald hebb. If two neurons fire together, their connection is enhanced. The strength is referred to as the weight."/>
+<meta itemprop="name" content="Artificial neural networks">
+<meta itemprop="description" content="Human brain has approximately 86 billion neuros which are connected to each other via synapses. Neurons receive signals from other neurons via their dendrites and transmit their output through their axons. A neuron only fires if the total signal received exceeds a certain threshold value. &ldquo;Neural pathways are strengthened every time that they are used&rdquo; -Donald hebb. If two neurons fire together, their connection is enhanced. The strength is referred to as the weight.">
+
+<meta itemprop="wordCount" content="352">
+
+
+
+<meta itemprop="keywords" content="" />
+</head>
+<body><div class="container"><header>
+<h1>Data Science Notes</h1>
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    tags: 'ams'
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+</header>
+<div class="global-menu">
+<nav>
+<ul>
+<li><a href="https://bharathravu.github.io/data-science-notes/">Home</a></li></ul>
+</nav>
+</div>
+<div class="content-container">
+<main><h1>Artificial neural networks</h1>
+<ul>
+<li>Human brain has approximately 86 billion neuros which are connected to each other via synapses. Neurons receive signals from other neurons via their dendrites and transmit their output through their axons.</li>
+<li>A neuron only fires if the total signal received exceeds a certain threshold value.</li>
+<li>&ldquo;Neural pathways are strengthened every time that they are used&rdquo; -Donald hebb. If two neurons fire together, their connection is enhanced.</li>
+<li>The strength is referred to as the weight. We are effectively training our neurons and changing the weights between them.</li>
+<li>The learning comes down to adjusting the weights between the neurons and that is also the model that artificial neural network based on.</li>
+<li>With deep learning, neural network will do the job of feature selection. So deep learning removes the whole feature selection process.</li>
+<li>Activation function: It determines whether a neuron would activate or not. Examples are sigmoid, tanh or relu functions.</li>
+<li>Each node in the input layer represents a feature.</li>
+<li>The goal of a neural network is to discover the optimal combination of features. Since all neurons are connected together, it gets to try out every single combination.</li>
+<li>If pixels of an image is given as an input, the first hidden layer will start to generate features (or detecting simple patterns) like lines, edges, textures. The second hidden layer would use the features that the first layer outputs it. Here, the second layer is no longer confronted with pixels but with features generated by the first layer. Again the second hidden layer will try to combine lines and edges into something like shapes like rectangles, circles or shadows or something. Again the third hidden layer would get these shapes and generates its own features like eyes or tail or legs. This process continues till the final layer. In general, we don&rsquo;t know exactly what features the neural network generates.</li>
+<li>Rule of 10: we probably need 10 times more the amount of data as we have parameters that we need to estimate.</li>
+<li>Solve simple problems with simple methods.</li>
+<li>find pre trained models on zoo &ldquo;<a href="https://modelzoo.co/%22">https://modelzoo.co/&quot;</a></li>
+</ul>
+<h3 id="tensor-flow">Tensor flow</h3>
+<ul>
+<li>Tensor flow uses a graph to organize it&rsquo;s calculations.</li>
+</ul>
+<div class="edit-meta">
+
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/2_logistic_regression/" title="Logistic Regression"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - Logistic Regression</a>
+<a class="nav nav-next" href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/6_sequence_modeling/" title="Sequence Modeling">Next - Sequence Modeling <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer></footer>
+</main><div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/">Home</a></li>
+
+<li class="parent"><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/">Machine Learning</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/1_linear_regression/">Linear Regression</a></li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/2_logistic_regression/">Logistic Regression</a></li>
+<li class="active"><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/3_ann/">Artificial neural networks</a></li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/6_sequence_modeling/">Sequence Modeling</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/">Statistics</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/1/">Correlation</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/temp/">Temps</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/temp/job_search/">Job-search</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>

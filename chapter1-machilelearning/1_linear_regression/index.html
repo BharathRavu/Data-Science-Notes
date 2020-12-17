@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Linear Regression - Data Science Notes</title>
+<meta name="generator" content="Hugo 0.74.3" />
+<link href="https://bharathravu.github.io/data-science-notes//index.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/1_linear_regression/">
+<link rel="stylesheet" href="https://bharathravu.github.io/data-science-notes/css/theme.min.css">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://bharathravu.github.io/data-science-notes/css/chroma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="https://bharathravu.github.io/data-science-notes/js/bundle.js"></script><style>
+:root {}
+</style>
+<meta property="og:title" content="Linear Regression" />
+<meta property="og:description" content="Regression is fitting a line to our data; Discovering the hidden relationship between input and output.
+Univariate linear regression  Linear regression with one independent variable (or feature). a training example: $(x^{(i)},y^{(i)})$, where $i=1,\ldots,m$. $m$ represents the number of training examples. $X$ - space of input variables; $Y$ - space of output variables $h: X \mapsto Y$, where $h$ is a hypothesis. Hypothesis: $h_{\theta} (x)=\theta_0 &#43; \theta_1 x $; Shorthand notation: $h(x)$." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/1_linear_regression/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linear Regression"/>
+<meta name="twitter:description" content="Regression is fitting a line to our data; Discovering the hidden relationship between input and output.
+Univariate linear regression  Linear regression with one independent variable (or feature). a training example: $(x^{(i)},y^{(i)})$, where $i=1,\ldots,m$. $m$ represents the number of training examples. $X$ - space of input variables; $Y$ - space of output variables $h: X \mapsto Y$, where $h$ is a hypothesis. Hypothesis: $h_{\theta} (x)=\theta_0 &#43; \theta_1 x $; Shorthand notation: $h(x)$."/>
+<meta itemprop="name" content="Linear Regression">
+<meta itemprop="description" content="Regression is fitting a line to our data; Discovering the hidden relationship between input and output.
+Univariate linear regression  Linear regression with one independent variable (or feature). a training example: $(x^{(i)},y^{(i)})$, where $i=1,\ldots,m$. $m$ represents the number of training examples. $X$ - space of input variables; $Y$ - space of output variables $h: X \mapsto Y$, where $h$ is a hypothesis. Hypothesis: $h_{\theta} (x)=\theta_0 &#43; \theta_1 x $; Shorthand notation: $h(x)$.">
+
+<meta itemprop="wordCount" content="1045">
+
+
+
+<meta itemprop="keywords" content="" />
+</head>
+<body><div class="container"><header>
+<h1>Data Science Notes</h1>
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    tags: 'ams'
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+</header>
+<div class="global-menu">
+<nav>
+<ul>
+<li><a href="https://bharathravu.github.io/data-science-notes/">Home</a></li></ul>
+</nav>
+</div>
+<div class="content-container">
+<main><h1>Linear Regression</h1>
+<p>Regression is fitting a line to our data; Discovering the hidden relationship between input and output.</p>
+<h2 id="univariate-linear-regression">Univariate linear regression</h2>
+<ul>
+<li>Linear regression with one independent variable (or feature).</li>
+<li>a training example: $(x^{(i)},y^{(i)})$, where $i=1,\ldots,m$. $m$ represents the number of training examples.</li>
+<li>$X$ - space of input variables; $Y$ - space of output variables</li>
+<li>$h: X \mapsto Y$, where $h$ is a hypothesis.</li>
+<li>Hypothesis: $h_{\theta} (x)=\theta_0 + \theta_1 x $; Shorthand notation: $h(x)$. $\theta_0$ is intercept, $\theta_1$ is slope.</li>
+<li>$\theta_{i&rsquo;s}:$ parameters; How to choose $\theta_{i&rsquo;s}$?</li>
+<li>Choose $\theta_0$, $\theta_1$ so that $h(x)$ is close to $y$ for the training set.</li>
+<li>Cost function: Squared error function
+\begin{equation}
+J(\theta_0, \theta_1)= \frac{1}{2m} \sum_{i=1}^m (h_{\theta}(x^{(i)})-y^{(i)})^2
+\label{eq:cost_fn_linear_uni}
+\end{equation}
+\begin{equation*}
+J(\theta_0, \theta_1)= \frac{1}{2m} \sum_{i=1}^m (\theta_0 + \theta_1 x^{(i)}-y^{(i)})^2
+\end{equation*}</li>
+<li>Goal: $\underset{\theta_0, \theta_1}{\text{Minimize}}$ $J$; At $J$ minimum, $\frac{\partial J}{\partial \theta_0}=0$ and $\frac{\partial J}{\partial \theta_1}=0$.</li>
+<li>Sometimes unrealistic values of $\theta_0$ would be found</li>
+<li>one unit change in X gives $\theta_1$ times change in y</li>
+<li>Goodness of fit, $R^2$= the amount of variance explained by the model, range 0-1; if $R^2$=0.55, 55% variance is explained by the model.</li>
+<li>$R^2$: 0 (bad) $\to$ $1 (good)$</li>
+</ul>
+<h4 id="derivation-of-coefficients">Derivation of coefficients</h4>
+<p>Expanding equation \eqref{eq:cost_fn_linear_uni},
+\begin{equation}
+J(\theta_0, \theta_1)= \frac{1}{2m} \sum_{i=1}^m \Big(\theta_0^2+\theta_1^2 (x^{(i)})^2 +(y^{(i)})^2 + 2 \theta_0 \theta_1 x^{(i)} - 2 \theta_1 x^{(i)} y^{(i)} - 2 \theta_0 y^{(i)}\Big)<br>
+\end{equation}
+Calculating $\frac{\partial J}{\partial \theta_0}$,
+\begin{equation}
+\begin{split}
+\frac{\partial J}{\partial \theta_0} &amp; = \frac{1}{2m} \sum_{i=1}^m (2 \theta_0  + 2 \theta_1 x^{(i)}- 2 y^{(i)})    \cr
+&amp; = \theta_0 + \theta_1 \frac{ \sum_{i=1}^m x^{(i)}}{m} - \frac{\sum_{i=1}^m y^{(i)}}{m}  \cr
+&amp; = \theta_0 + \theta_1 \bar{x} - \bar{y}
+\end{split}
+\label{eq:dj_dtheta_0}
+\end{equation}</p>
+<p>Setting $\frac{\partial J}{\partial \theta_0}=0$,
+\begin{equation}
+\theta_0 = \bar{y} - \theta_1 \bar{x}
+\label{eq:dtheta_0_eqn}
+\end{equation}</p>
+<p>Calculating $\frac{\partial J}{\partial \theta_1}$,<br>
+\begin{equation}
+\begin{split}
+\frac{\partial J}{\partial \theta_1} &amp; = \frac{1}{2m} \sum_{i=1}^m (2 \theta_1 (x^{(i)})^2 + 2 \theta_0 x^{(i)}- 2 x^{(i)} y^{(i)})  \cr
+&amp; = \theta_1 \frac{ \sum_{i=1}^m (x^{(i)})^2}{m} + \theta_0 \frac{ \sum_{i=1}^m x^{(i)}}{m} - \frac{\sum_{i=1}^m x^{(i)} y^{(i)}}{m}  \cr
+&amp; = \theta_1 \frac{ \sum_{i=1}^m (x^{(i)})^2}{m} + \theta_0 \bar{x} - \frac{\sum_{i=1}^m x^{(i)} y^{(i)}}{m}
+\end{split}
+\end{equation}</p>
+<p>Setting $\frac{\partial J}{\partial \theta_1}=0$,<br>
+\begin{equation}
+\theta_1 \frac{ \sum_{i=1}^m (x^{(i)})^2}{m} + \theta_0 \bar{x} - \frac{\sum_{i=1}^m x^{(i)} y^{(i)}}{m}=0
+\label{eq:dj_dtheta_1}
+\end{equation}</p>
+<p>Substituting equation \eqref{eq:dtheta_0_eqn} in equation \eqref{eq:dj_dtheta_1}, we get<br>
+\begin{equation}
+\begin{split}
+\theta_1 &amp; = \frac{ \sum_{i=1}^m x^{(i)} y^{(i)} - m \bar{x}\bar{y}}{\sum_{i=1}^m (x^{(i)})^2 - m \bar{x}^2} \cr
+&amp; = \frac{Cov(x,y)}{Var(x)}<br>
+\end{split}
+\end{equation}</p>
+<h3 id="gradient-descent">Gradient descent</h3>
+<ul>
+<li>Repeat until convergence :<br>
+\begin{equation}
+\theta_j := \theta_j -\alpha \frac{\partial}{\partial \theta_j} J (\theta_0, \theta_1), \quad \text{j=0,1 update simultaneously},
+\end{equation}
+where $\alpha$ is the learning rate</li>
+<li>If $\alpha$ is too small, gradient descent can be slow.</li>
+<li>If $\alpha$ is too large, gradient descent can overshoot the minimum. It may fail to converge, or even diverge.</li>
+</ul>
+<h4 id="batch-gradient-descent">Batch gradient descent</h4>
+<p>All the training data is used in calculating $J$. We considered the average of the gradients of all the data points in the training set to update parameters. One epoch equals one gradient descent step. It converges to minima directly</p>
+<h4 id="stochastic-gradient-descent-sgd">Stochastic gradient descent (SGD)</h4>
+<p>If our training data set is so huge, considering all the points in the training data to calculate $J$ would not be efficient. In stochastic gradient descent, we consider the gradient of one example at a time in single step. Here, one epoch means, considering all the points one after the other to parameters.</p>
+<pre><code>for i in m
+    calculate gradient of (x(i), y(i)) and update parameters
+</code></pre><p>So one epoch has $m$ time steps. Since we consider only one example a time, the cost will fluctuate. It will not necessarily decrease, but in the long run the cost would decrease with fluctuations. Also, it will never reach the minimum because of it&rsquo;s fluctuating nature. When the dataset is large, SGD can be used to achieve faster convergence as it updates parameters more frequently.</p>
+<h4 id="mini-batch-gradient-descent">Mini batch gradient descent</h4>
+<p>The problem with SGD is that, we can not apply vectorized implementation, leading to slower computations. To address this issue, a mix of batch gradient method and SGD are used. In this method, we divide the whole batch in mini-batches of fixed size. Here, one epoch means, calculating the mean gradient of the mini batches one after the other for all the mini-batches to update parameters. Similar to SGD, the cost will fluctuate.</p>
+<h2 id="multivariate-linear-regression">Multivariate Linear Regression</h2>
+<ul>
+<li>Known as multiple linear regression</li>
+<li>Multiple features</li>
+<li>Hypothesis: $h_{\theta}(x)=\theta_0+\theta_1 x_1+\theta_2 x_2+ \ldots + \theta_n x_n$</li>
+<li>Define $x_0=1$ for convenience.</li>
+<li>\begin{align*}
+x =
+\begin{bmatrix}
+x_0 \cr
+x_1 \cr
+\vdots \cr
+x_n
+\end{bmatrix}
+\in \mathbb{R}^{n+1}
+\end{align*}</li>
+<li>\begin{align*}
+\theta =
+\begin{bmatrix}
+\theta_0 \cr
+\theta_1 \cr
+\vdots \cr
+\theta_n
+\end{bmatrix}
+\in \mathbb{R}^{n+1}
+\end{align*}</li>
+<li>$h_{\theta}(x)=\theta^T x$</li>
+<li>Cost function $J(\theta_0,\theta_1,\ldots,\theta_n)=\frac{1}{2m} \sum_{i=1}^m \Big( h_{\theta}(x^{(i)})-y^{(i)} \Big)^2$</li>
+<li>Gradient descent:  simultaneously update for $j=0,1,\ldots,n$
+\begin{equation}
+\begin{split}
+\theta_j  &amp; := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta)   \cr
+&amp; = \theta_j - \alpha \frac{\partial}{\partial \theta_j} \frac{1}{2m} \sum_{i=1}^m \Big( h_{\theta}(x^{(i)})-y^{(i)} \Big)^2  \cr
+&amp; = \theta_j - \alpha \frac{1}{m} \sum_{i=1}^m \Big( h_{\theta}(x^{(i)})-y^{(i)} \Big) x_j^{(i)}
+\end{split}
+\label{eq:dj_dtheta_mse}
+\end{equation}</li>
+<li>Feature scaling (write its importance)</li>
+<li>Mean normalization (write its importance)</li>
+<li>predict the sign of $\theta_n$, positive or negative</li>
+<li>r-squared value is lower for the test data than the training data; because the model hasn&rsquo;t seen the test dataset</li>
+<li>With r-squared value, we get a little bit of a feeling for how our model would fit in the real world</li>
+<li>For non-convex problems of cost function, try out multiple starting values to find global minimum (easy way) or try different algorithms</li>
+</ul>
+<h2 id="polynomial-regression">Polynomial Regression</h2>
+<ul>
+<li>House price prediction: $h_{\theta}(x)=\theta_0+\theta_1 \times \text{frontage}+\theta_2 \times \text{depth}$<br>
+Area= frontage $\times$ depth<br>
+$h_{\theta}(x)=\theta_0+ \theta_1 \times Area$</li>
+<li>A model hypothesis:
+\begin{equation}
+\begin{split}
+h_{\theta}(x) &amp;= \theta_0+\theta_1 (size) + \theta_2 (size)^2 + \theta_3 (size)^3 \cr
+&amp;= \theta_0+\theta_1 (x) + \theta_2 (x)^2 + \theta_3 (x)^3 \cr
+&amp;= \theta_0+\theta_1 x_1 + \theta_2 x_2 + \theta_3 x_3
+\end{split}
+\end{equation}</li>
+<li>Another hypothesis: $h_{\theta}(x)=\theta_0 + \theta_1 (size) + \theta_2 \sqrt{(size)}$</li>
+</ul>
+<h2 id="normal-equation---multivariate-regression">Normal equation - Multivariate Regression</h2>
+<ul>
+<li>$m$ examples and $n$ features</li>
+<li>\begin{align*}
+x^{(i)} =
+\begin{bmatrix}
+x_0^{(i)} \cr
+x_1^{(i)} \cr
+\vdots \cr
+x_n^{(i)}
+\end{bmatrix}
+\in \mathbb{R}^{n+1}
+\end{align*}</li>
+<li>\begin{align*}
+X =
+\begin{bmatrix}
+\cdots &amp; (x_0^{(i)})^T &amp; \cdots \cr
+\cdots &amp; (x_1^{(i)})^T &amp; \cdots \cr
+\cdots &amp; \vdots &amp; \cdots \cr
+\cdots &amp; x_n^{(i)})^T &amp; \cdots
+\end{bmatrix}
+\end{align*}</li>
+<li>$X \theta = y$</li>
+<li>$\theta= X^{-1} y = (X^T X)^{-1} X^T y$</li>
+<li>no need to choose $\alpha$, Don&rsquo;t need to iterate</li>
+<li>Need to compute $(X^T X)^{-1}$</li>
+<li>Slow if $n$ is large</li>
+<li>What if $(X^T X)$ is non-invertible ? (singular/degenerate)
+<ul>
+<li>Redundant features (linearly dependent)</li>
+<li>Too many features (e.g. $m \leq n$) : delete some features or use regularization</li>
+</ul>
+</li>
+</ul>
+<div class="edit-meta">
+
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/" title="Machine Learning"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - Machine Learning</a>
+<a class="nav nav-next" href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/2_logistic_regression/" title="Logistic Regression">Next - Logistic Regression <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer></footer>
+</main><div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/">Home</a></li>
+
+<li class="parent"><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/">Machine Learning</a>
+  
+<ul class="sub-menu">
+<li class="active"><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/1_linear_regression/">Linear Regression</a></li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/2_logistic_regression/">Logistic Regression</a></li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/3_ann/">Artificial neural networks</a></li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/6_sequence_modeling/">Sequence Modeling</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/">Statistics</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/1/">Correlation</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/temp/">Temps</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/temp/job_search/">Job-search</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>

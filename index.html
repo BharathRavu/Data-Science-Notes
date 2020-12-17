@@ -3,7 +3,7 @@
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Home title - Bharath Ravu</title>
+<title>Home title - Data Science Notes</title>
 <meta name="description" content="Text about this post">
 <meta name="generator" content="Hugo 0.74.3" />
 <link href="https://bharathravu.github.io/data-science-notes//index.xml" rel="alternate" type="application/rss+xml">
@@ -21,7 +21,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://bharathravu.github.io/data-science-notes/" />
 <meta property="og:image" content="https://bharathravu.github.io/data-science-notes/images/pexels-photo-196666.jpeg" />
-<meta property="og:updated_time" content="2019-10-26T15:26:15+00:00" /><meta property="og:site_name" content="Data Science Notes" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://bharathravu.github.io/data-science-notes/images/pexels-photo-196666.jpeg"/>
 
@@ -31,113 +31,116 @@
 <meta itemprop="description" content="Text about this post">
 </head>
 <body><div class="container"><header>
-<h1>Bharath Ravu</h1>
-<a href="https://github.com/thingsym/hugo-theme-techdoc" class="github"><i class="fab fa-github"></i></a>
-<p class="description">put your description</p>
+<h1>Data Science Notes</h1>
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    tags: 'ams'
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
 
 </header>
 <div class="global-menu">
 <nav>
 <ul>
-<li><a href="https://bharathravu.github.io/data-science-notes/">Home</a></li>
-<li><a href="https://twitter.com/thingsym">Twitter</a></li>
-<li><a href="https://bharathravu.github.io/data-science-notes/about/">About Hugo</a></li></ul>
+<li><a href="https://bharathravu.github.io/data-science-notes/">Home</a></li></ul>
 </nav>
 </div>
 <div class="content-container">
-<main><h1 id="data-science-notes">Data Science Notes</h1>
-<h2 id="the-techdoc-is-a-hugo-theme-for-technical-documentation">The Techdoc is a Hugo Theme for technical documentation.</h2>
-<h2 id="features">Features</h2>
-<ul>
-<li>Probability</li>
-<li>Statistical Methods</li>
-<li>Documentation menu (Select <a href="getting-started/screenshot/#menu-style">Menu style</a>)</li>
-<li><a href="sample/table-of-contents/">Table Of Contents</a> for the page (selective)</li>
-<li><a href="getting-started/screenshot/#theme-color">Theme color</a></li>
-<li><a href="getting-started/screenshot/#edit-link">Edit link</a> to documentation repository</li>
-<li><a href="sample/custom-shortcodes/">Custom Shortcodes</a></li>
-<li><a href="sample/search-shortcode/">Search Shortcode</a> powered by <a href="https://www.algolia.com/">Algolia</a></li>
-<li>Open Graph</li>
-<li>Analytics with Google Analytics, Google Tag Manager</li>
+<main><ul>
+<li>Human&rsquo;s desire for efficiency led to the development of computers and programming languages.</li>
+<li>Enabling computers to do tasks that can be done by humans and also the tasks that can&rsquo;t be done by humans and thus humans can work less and spend more time on other things.</li>
+<li>Machines can work 24 X 7 unlike humans who can only work for a few hours a day.</li>
+<li>From data mining to knowledge discovery in databases (1996 paper)</li>
+<li>Data mining is the application of specific algorithms for extracting patterns from databases</li>
+<li>Data mining + Computer Science = Data Science</li>
+<li>Business Intelligence: find if somebody is pregnant from their purchases data and market to them the things that you sell to new parents</li>
+<li>Paper title: What&rsquo;s even creepier than target guessing that you are pregnant</li>
+<li>In the move &ldquo;Money ball&rdquo;, a poor baseball team picked under valued players and win 20 consecutive series using data Science</li>
 </ul>
-<nav class="pagination"><a class="nav nav-next" href="https://bharathravu.github.io/data-science-notes/machine-learning/" title="Machine Learning">Next - Machine Learning <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+<h2 id="data-science-project-steps">Data Science Project Steps</h2>
+<ol>
+<li>Formulate Question: Define the problem that you want to solve and make sure you ask the right questions; clear well formulated question will determine the research and it will also affect the kind of data that you will gather</li>
+<li>Gather data:
+<ul>
+<li>Source of the data: Where does the data come From</li>
+<li>Description of the data set: understanding all the context under which the data was collected</li>
+<li>Number of data points: How big is the dataset actually</li>
+<li>Number of features: for each data point, how many aspects (characteristics) were measured</li>
+<li>Description of the features:</li>
+</ul>
+</li>
+<li>Clean data: real world data is also messy, so need to clean the data</li>
+<li>Explore and Visualize: a graph or chart is much more helpful than a table of databases; a picture is worth a thousand words; Oftentimes, exploring, visualizing and cleaning the data more or less at the same time
+<ul>
+<li>Distribution</li>
+<li>Outliers</li>
+</ul>
+</li>
+<li>Model: Train Algorithm
+<ul>
+<li>Split training data and test data: shuffle data before splitting</li>
+</ul>
+</li>
+<li>Deploy and Evaluate
+<ul>
+<li>Check-up list to evaluate regression model:
+<ol>
+<li>R-squared</li>
+<li>p-values : of the coefficients</li>
+<li>V.I.F: variance inflation factor</li>
+<li>BIC: the Bayesian information</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>Dummy variable to capture binary</li>
+</ul>
+<!--* [Table Of Contents](sample/table-of-contents/) for the page (selective)-->
+<nav class="pagination"><a class="nav nav-next" href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/" title="Machine Learning">Next - Machine Learning <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
 </nav><div class="edit-meta">
-Last updated on 26 Oct 2019
 
-
-<br>
-Published on 23 Nov 2018
-<br><a href="https://github.com/thingsym/hugo-theme-techdoc/edit/master/content/_index.md" class="edit-page"><i class="fas fa-pen-square"></i> Edit on GitHub</a></div><footer><p class="powered">Powered by <a href="https://gohugo.io">Hugo</a>. Theme by <a href="https://themes.gohugo.io/hugo-theme-techdoc/">TechDoc</a>. Designed by <a href="https://github.com/thingsym/hugo-theme-techdoc">Thingsym</a>.</p>
-</footer>
+<br></div><footer></footer>
 </main><div class="sidebar">
 
 <nav class="open-menu">
 <ul>
 <li class="active"><a href="https://bharathravu.github.io/data-science-notes/">Home</a></li>
 
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/machine-learning/">Machine Learning</a>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/">Machine Learning</a>
   
 <ul class="sub-menu">
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/machine-learning/1/">Chapter 1-1</a></li>
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/machine-learning/2/">Chapter 1-2</a></li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/1_linear_regression/">Linear Regression</a></li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/2_logistic_regression/">Logistic Regression</a></li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/3_ann/">Artificial neural networks</a></li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/6_sequence_modeling/">Sequence Modeling</a></li>
 </ul>
   
 </li>
 
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/probability-theory/">Probability Theory</a>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/">Statistics</a>
   
 <ul class="sub-menu">
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/probability-theory/2/">Chapter 2-2 (weight: 30)</a></li>
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/probability-theory/1/">Chapter 2-1 (weight: 40)</a></li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/1/">Correlation</a></li>
 </ul>
   
 </li>
 
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter3/">Stochastic Processes</a>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/temp/">Temps</a>
   
 <ul class="sub-menu">
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter3/1/">Chapter 3-1</a></li>
-
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter3/chapter3-2/">Chapter 3-2</a>
-  
-<ul class="sub-menu">
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter3/chapter3-2/1/">Chapter 3-2-1</a></li>
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter3/chapter3-2/2/">Chapter 3-2-2</a></li>
-</ul>
-  
-</li>
-</ul>
-  
-</li>
-
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter4/">Chapter 4 (unlimited levels)</a>
-  
-<ul class="sub-menu">
-
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter4/chapter4-1/">Chapter 4-1</a>
-  
-<ul class="sub-menu">
-
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter4/chapter4-1/chapter4-1-1/">Chapter 4-1-1</a>
-  
-<ul class="sub-menu">
-
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter4/chapter4-1/chapter4-1-1/chapter4-1-1-1/">Chapter 4-1-1-1</a>
-  
-<ul class="sub-menu">
-
-<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter4/chapter4-1/chapter4-1-1/chapter4-1-1-1/chapter4-1-1-1-1/">Chapter 4-1-1-1-1</a>
-  
-</li>
-</ul>
-  
-</li>
-</ul>
-  
-</li>
-</ul>
-  
-</li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/temp/job_search/">Job-search</a></li>
 </ul>
   
 </li>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Logistic Regression - Data Science Notes</title>
+<meta name="generator" content="Hugo 0.74.3" />
+<link href="https://bharathravu.github.io/data-science-notes//index.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/2_logistic_regression/">
+<link rel="stylesheet" href="https://bharathravu.github.io/data-science-notes/css/theme.min.css">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://bharathravu.github.io/data-science-notes/css/chroma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="https://bharathravu.github.io/data-science-notes/js/bundle.js"></script><style>
+:root {}
+</style>
+<meta property="og:title" content="Logistic Regression" />
+<meta property="og:description" content="Coursera Notes:
+Classification  Email: spam / not spam Online transactions: Fraudulent (yes/no) Tumor: Malignant/Benign ?  $y=0$: negative Class (Benign tumor) $y=1$: positive class (Malignant)   Threshold classifier output $h_{\theta}$ at 0.5:  if $h_{\theta} \geq 0.5$, predict $y=1$ if $h_{\theta} &lt; 0.5$, predict $y=0$   Classification $y=0$ or $y=1$. But if we use linear regression formula, $h_{\theta}(x)$ can be &lt;0 or &gt;1 Logistic regression model: want $0 \leq h_{\theta} \leq 1$ Sigmoid function $g(z)$: output values range from 0 to 1 \begin{equation} g(z)=\frac{1}{1&#43;\exp^{-z}} \end{equation} set, $z=\Theta^T x$ Hypothesis: \begin{equation} h_{\theta} (x) = \frac{1}{1&#43;\exp^{-\Theta^T x}} \end{equation}  Interpretation of hypothesis output  $h_{\theta}(x)$ is the estimated probability that $y=1$ on input $x$ $h_{\theta}(x)=0." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/2_logistic_regression/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Logistic Regression"/>
+<meta name="twitter:description" content="Coursera Notes:
+Classification  Email: spam / not spam Online transactions: Fraudulent (yes/no) Tumor: Malignant/Benign ?  $y=0$: negative Class (Benign tumor) $y=1$: positive class (Malignant)   Threshold classifier output $h_{\theta}$ at 0.5:  if $h_{\theta} \geq 0.5$, predict $y=1$ if $h_{\theta} &lt; 0.5$, predict $y=0$   Classification $y=0$ or $y=1$. But if we use linear regression formula, $h_{\theta}(x)$ can be &lt;0 or &gt;1 Logistic regression model: want $0 \leq h_{\theta} \leq 1$ Sigmoid function $g(z)$: output values range from 0 to 1 \begin{equation} g(z)=\frac{1}{1&#43;\exp^{-z}} \end{equation} set, $z=\Theta^T x$ Hypothesis: \begin{equation} h_{\theta} (x) = \frac{1}{1&#43;\exp^{-\Theta^T x}} \end{equation}  Interpretation of hypothesis output  $h_{\theta}(x)$ is the estimated probability that $y=1$ on input $x$ $h_{\theta}(x)=0."/>
+<meta itemprop="name" content="Logistic Regression">
+<meta itemprop="description" content="Coursera Notes:
+Classification  Email: spam / not spam Online transactions: Fraudulent (yes/no) Tumor: Malignant/Benign ?  $y=0$: negative Class (Benign tumor) $y=1$: positive class (Malignant)   Threshold classifier output $h_{\theta}$ at 0.5:  if $h_{\theta} \geq 0.5$, predict $y=1$ if $h_{\theta} &lt; 0.5$, predict $y=0$   Classification $y=0$ or $y=1$. But if we use linear regression formula, $h_{\theta}(x)$ can be &lt;0 or &gt;1 Logistic regression model: want $0 \leq h_{\theta} \leq 1$ Sigmoid function $g(z)$: output values range from 0 to 1 \begin{equation} g(z)=\frac{1}{1&#43;\exp^{-z}} \end{equation} set, $z=\Theta^T x$ Hypothesis: \begin{equation} h_{\theta} (x) = \frac{1}{1&#43;\exp^{-\Theta^T x}} \end{equation}  Interpretation of hypothesis output  $h_{\theta}(x)$ is the estimated probability that $y=1$ on input $x$ $h_{\theta}(x)=0.">
+
+<meta itemprop="wordCount" content="544">
+
+
+
+<meta itemprop="keywords" content="" />
+</head>
+<body><div class="container"><header>
+<h1>Data Science Notes</h1>
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    tags: 'ams'
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+</header>
+<div class="global-menu">
+<nav>
+<ul>
+<li><a href="https://bharathravu.github.io/data-science-notes/">Home</a></li></ul>
+</nav>
+</div>
+<div class="content-container">
+<main><h1>Logistic Regression</h1>
+<p>Coursera Notes:</p>
+<h3 id="classification">Classification</h3>
+<ul>
+<li>Email: spam / not spam</li>
+<li>Online transactions: Fraudulent (yes/no)</li>
+<li>Tumor: Malignant/Benign ?
+<ul>
+<li>$y=0$: negative Class (Benign tumor)</li>
+<li>$y=1$: positive class (Malignant)</li>
+</ul>
+</li>
+<li>Threshold classifier output $h_{\theta}$ at 0.5:
+<ul>
+<li>if $h_{\theta} \geq 0.5$, predict $y=1$</li>
+<li>if $h_{\theta} &lt; 0.5$, predict $y=0$</li>
+</ul>
+</li>
+<li>Classification $y=0$ or $y=1$. But if we use linear regression formula, $h_{\theta}(x)$ can be &lt;0 or &gt;1</li>
+<li>Logistic regression model: want $0 \leq h_{\theta} \leq 1$</li>
+<li>Sigmoid function $g(z)$: output values range from 0 to 1
+\begin{equation}
+g(z)=\frac{1}{1+\exp^{-z}}
+\end{equation}</li>
+<li>set, $z=\Theta^T x$</li>
+<li>Hypothesis:
+\begin{equation}
+h_{\theta} (x) = \frac{1}{1+\exp^{-\Theta^T x}}
+\end{equation}</li>
+</ul>
+<h3 id="interpretation-of-hypothesis-output">Interpretation of hypothesis output</h3>
+<ul>
+<li>$h_{\theta}(x)$ is the estimated probability that $y=1$ on input $x$</li>
+<li>$h_{\theta}(x)=0.7$, tell the patient that 70 % chance of tumor being  malignant.</li>
+<li>$h_{\theta}=P(y=1|x; \Theta)$, probability that $y=1$, given $x$ parameterized by $\Theta$</li>
+<li>$h_{\theta}=P(y=0|x; \Theta) + h_{\theta}=P(y=1|x; \Theta) =1$<br>
+$h_{\theta}=P(y=0|x; \Theta) = 1 - h_{\theta}=P(y=1|x; \Theta) $</li>
+</ul>
+<h3 id="decision-boundary">Decision boundary</h3>
+<ul>
+<li>Decision boundary depends on the threshold that has been set at $h_{\theta}(x)=g(\Theta^T x)= 0.5$</li>
+<li>$h_{\theta}(x)= 0.5$, when $z=\Theta^T x=0$</li>
+<li>so the line $\Theta^T x=0$ in the space $X$ becomes the decision boundary
+<ul>
+<li>predict $y=1$ if $\Theta^T x \geq 0$</li>
+<li>predict $y=0$ if $\Theta^T x &lt; 0$</li>
+</ul>
+</li>
+</ul>
+<h4 id="non-linear-decision-boundary">Non-linear decision boundary</h4>
+<ul>
+<li>Threshold at $h_{\theta}(x)=g(\theta_0 + \theta_1 x_1 + \theta_2 x_2 + \theta_3 x_1^2 + \theta_4 x_2^2)=0.5$, where $g$ is the sigmoid function
+<ul>
+<li>decision boundary $\theta_0 + \theta_1 x_1 + \theta_2 x_2 + \theta_3 x_1^2 + \theta_4 x_2^2=0$</li>
+</ul>
+</li>
+<li>Imagine a decision boundary which is a unit circle centered at origin $(x_1=0,x_2=0)$, how would the hypothesis look like?
+<ul>
+<li>$h_{\theta}(x)=g(x_1^2+x_2^2-1)$</li>
+</ul>
+</li>
+</ul>
+<h3 id="cost-function">Cost function</h3>
+<ul>
+<li>Can&rsquo;t use $J= \frac{1}{2m} \sum_{i=1}^m \Big( h_{\theta}(x^{(i)})-y^{(i)} \Big)^2$, this makes the function $J$ non-convex.
+\begin{equation}
+h_{\theta} (x)= \frac{1}{1+\exp^{-\Theta^T x}}
+\end{equation}</li>
+<li>Consider
+\begin{equation}
+Cost(h_{\theta} (x),y) =
+\begin{cases}
+-log(h_{\theta} (x)) \quad \text{if $y$=1} \cr
+-log(1-h_{\theta} (x)) \quad \text{if $y$=0}
+\end{cases}    <br>
+\end{equation}
+<ul>
+<li>For $y=1$,
+<ul>
+<li>$h_{\theta}(x)=1$ then $Cost=0$,</li>
+<li>$h_{\theta}(x) \to 0$ then $Cost \to \infty$</li>
+</ul>
+</li>
+<li>For $y=0$,
+<ul>
+<li>$h_{\theta}(x)=0$ then $Cost=0$,</li>
+<li>$h_{\theta}(x) \to 1$ then $Cost \to \infty$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Cost function:
+\begin{equation}
+\begin{split}
+J(\theta) &amp; =  \frac{1}{m} \sum_{i=1}^m Cost(h_{\theta} (x^{(i)}),y^{(i)})  \cr
+&amp; = -\frac{1}{m} \sum_{i=1}^m \Big[ y^{(i)}log(h_{\theta} (x^{(i)})) +(1-y^{(i)})  log(1-h_{\theta} (x^{(i)})) \Big]
+\end{split}
+\end{equation}</li>
+</ul>
+<h3 id="gradient-descent">Gradient descent</h3>
+<ul>
+<li>Repeat until convergence :<br>
+\begin{equation}
+\theta_j := \theta_j -\alpha \frac{\partial}{\partial \theta_j} J (\theta), \quad \text{update all $\theta_j$ simultaneously},
+\end{equation}
+where $\alpha$ is the learning rate</li>
+<li>$\underset{\theta}{\text{Minimize}}$ $J(\theta)$</li>
+</ul>
+<h3 id="finding-fracpartial-jpartial-theta_j-">Finding $\frac{\partial J}{\partial \theta_j} $</h3>
+<ul>
+<li>We have already set $z=\Theta^T x$</li>
+<li>Set $h_{\theta}(x)=g(z(x))=a(z(x))$, where $g$ is a sigmoid function</li>
+<li></li>
+</ul>
+<p>\begin{equation}
+\frac{\partial}{\partial \theta_j} J (\theta)=\frac{1}{m} \sum_{i=1}^m \frac{\partial}{\partial \theta_j} Cost(h_{\theta} (x^{(i)}),y^{(i)})
+\end{equation}</p>
+<ul>
+<li>Chain rule:
+\begin{equation}
+\begin{split}
+\frac{\partial}{\partial \theta_j} Cost(h_{\theta} (x^{(i)}),y^{(i)}) &amp; = \frac{\partial}{\partial \theta_j} Cost(a^{(i)},y^{(i)}) \cr
+&amp; = \frac{\partial Cost(a^{(i)},y^{(i)})}{\partial a^{(i)}}  \times \frac{\partial a^{(i)}}{\partial z^{(i)}} \times \frac{\partial z^{(i)}}{\partial \theta_j}
+\end{split}
+\end{equation}</li>
+<li>$\frac{\partial Cost(a,y)}{\partial a}=?$
+\begin{equation}
+\begin{split}
+\frac{\partial Cost(a,y)}{\partial a} &amp; = \frac{\partial}{\partial a} (-y \times log(a)-(1-y)log(1-a)) \cr
+&amp; = -\frac{y}{a}- \frac{1-y}{1-a}\times -1 \cr
+&amp; = \frac{a-y}{a(1-a)}
+\end{split}
+\end{equation}</li>
+<li>$\frac{\partial a}{\partial z}=?$
+\begin{equation}
+\begin{split}
+\frac{\partial a}{\partial z} &amp; = \frac{\partial}{\partial z} \Big(\frac{1}{1+e^{-z}}\Big) \cr
+&amp; = \frac{-1}{(1+e^{-z})^2} \times e^{-z} \times -1 =\frac{e^{-z}}{(1+e^{-z})^2} \cr
+&amp; =\frac{1}{1+e^{-z}}-\frac{1}{(1+e^{-z})^2} \cr
+&amp; = a - a^2 = a (1-a)
+\end{split}
+\end{equation}</li>
+<li></li>
+</ul>
+<p>\begin{equation}
+\frac{\partial z^{(i)}}{\partial \theta_j}=x_j^{(i)}
+\end{equation}</p>
+<ul>
+<li>
+<p>Substituting equations in
+\begin{equation}
+\begin{split}
+\frac{\partial J}{\partial \theta_j} &amp; = \frac{1}{m} \sum_{i=1}^m (a^{(i)}-y^{(i)}) \times x_j^{(i)} \cr
+&amp; = \frac{1}{m} \sum_{i=1}^m (h_{\theta}(x^{(i)})-y^{(i)}) \times x_j^{(i)}
+\end{split}
+\label{eq:dj_dtheta_log}
+\end{equation}</p>
+</li>
+<li>
+<p>The above equation looks similar to the linear regression $\frac{\partial J}{\partial \theta_j}$ expression where mean squared error is used for the loss function.</p>
+</li>
+</ul>
+<div class="edit-meta">
+
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/1_linear_regression/" title="Linear Regression"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - Linear Regression</a>
+<a class="nav nav-next" href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/3_ann/" title="Artificial neural networks">Next - Artificial neural networks <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer></footer>
+</main><div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/">Home</a></li>
+
+<li class="parent"><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/">Machine Learning</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/1_linear_regression/">Linear Regression</a></li>
+<li class="active"><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/2_logistic_regression/">Logistic Regression</a></li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/3_ann/">Artificial neural networks</a></li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/6_sequence_modeling/">Sequence Modeling</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/">Statistics</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/1/">Correlation</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/temp/">Temps</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/temp/job_search/">Job-search</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>

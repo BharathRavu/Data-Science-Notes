@@ -3,98 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://bharathravu.github.io/data-science-notes/hello_world/</loc>
-    <lastmod>2017-10-17T14:00:45+00:00</lastmod>
+    <loc>https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/1_linear_regression/</loc>
   </url>
   
   <url>
-    <loc>https://bharathravu.github.io/data-science-notes/machine-learning/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
+    <loc>https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/2_logistic_regression/</loc>
   </url>
   
   <url>
-    <loc>https://bharathravu.github.io/data-science-notes/probability-theory/2/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
+    <loc>https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/3_ann/</loc>
   </url>
   
   <url>
-    <loc>https://bharathravu.github.io/data-science-notes/probability-theory/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
+    <loc>https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/</loc>
   </url>
   
   <url>
-    <loc>https://bharathravu.github.io/data-science-notes/probability-theory/1/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
+    <loc>https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/6_sequence_modeling/</loc>
   </url>
   
   <url>
-    <loc>https://bharathravu.github.io/data-science-notes/chapter3/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
+    <loc>https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/1/</loc>
   </url>
   
   <url>
-    <loc>https://bharathravu.github.io/data-science-notes/chapter4/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://bharathravu.github.io/data-science-notes/</loc>
-    <lastmod>2019-10-26T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://bharathravu.github.io/data-science-notes/machine-learning/1/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://bharathravu.github.io/data-science-notes/machine-learning/2/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://bharathravu.github.io/data-science-notes/chapter3/1/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://bharathravu.github.io/data-science-notes/chapter3/chapter3-2/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://bharathravu.github.io/data-science-notes/chapter3/chapter3-2/1/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://bharathravu.github.io/data-science-notes/chapter3/chapter3-2/2/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://bharathravu.github.io/data-science-notes/chapter4/chapter4-1/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://bharathravu.github.io/data-science-notes/chapter4/chapter4-1/chapter4-1-1/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://bharathravu.github.io/data-science-notes/chapter4/chapter4-1/chapter4-1-1/chapter4-1-1-1/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://bharathravu.github.io/data-science-notes/chapter4/chapter4-1/chapter4-1-1/chapter4-1-1-1/chapter4-1-1-1-1/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://bharathravu.github.io/data-science-notes/about/</loc>
-    <lastmod>2014-04-09T00:00:00+00:00</lastmod>
+    <loc>https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/</loc>
   </url>
   
   <url>
@@ -102,7 +35,19 @@
   </url>
   
   <url>
+    <loc>https://bharathravu.github.io/data-science-notes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://bharathravu.github.io/data-science-notes/temp/job_search/</loc>
+  </url>
+  
+  <url>
     <loc>https://bharathravu.github.io/data-science-notes/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://bharathravu.github.io/data-science-notes/temp/</loc>
   </url>
   
 </urlset>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Sequence Modeling - Data Science Notes</title>
+<meta name="generator" content="Hugo 0.74.3" />
+<link href="https://bharathravu.github.io/data-science-notes//index.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/6_sequence_modeling/">
+<link rel="stylesheet" href="https://bharathravu.github.io/data-science-notes/css/theme.min.css">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://bharathravu.github.io/data-science-notes/css/chroma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="https://bharathravu.github.io/data-science-notes/js/bundle.js"></script><style>
+:root {}
+</style>
+<meta property="og:title" content="Sequence Modeling" />
+<meta property="og:description" content="LSTM is awesome, but not good enough Transformers: how and why $f(X) \approx y$, where $f$ is the model, X is the input and $y$ is the outcome/prediction Sequence Modeling is a problem $f:\mathbb{R}^d \mapsto \mathbb{R}$, $\mathbb{R}^d$ contains fixed size $d$ vectors can not represent documents a fixed size vector Documents are of various lengths Not aware of any linear algebra that works on variable dimensionality Classic way: bag of words Order matters: &ldquo;work to live&rdquo; vs &ldquo;live to work&rdquo;; Both score same." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/6_sequence_modeling/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Sequence Modeling"/>
+<meta name="twitter:description" content="LSTM is awesome, but not good enough Transformers: how and why $f(X) \approx y$, where $f$ is the model, X is the input and $y$ is the outcome/prediction Sequence Modeling is a problem $f:\mathbb{R}^d \mapsto \mathbb{R}$, $\mathbb{R}^d$ contains fixed size $d$ vectors can not represent documents a fixed size vector Documents are of various lengths Not aware of any linear algebra that works on variable dimensionality Classic way: bag of words Order matters: &ldquo;work to live&rdquo; vs &ldquo;live to work&rdquo;; Both score same."/>
+<meta itemprop="name" content="Sequence Modeling">
+<meta itemprop="description" content="LSTM is awesome, but not good enough Transformers: how and why $f(X) \approx y$, where $f$ is the model, X is the input and $y$ is the outcome/prediction Sequence Modeling is a problem $f:\mathbb{R}^d \mapsto \mathbb{R}$, $\mathbb{R}^d$ contains fixed size $d$ vectors can not represent documents a fixed size vector Documents are of various lengths Not aware of any linear algebra that works on variable dimensionality Classic way: bag of words Order matters: &ldquo;work to live&rdquo; vs &ldquo;live to work&rdquo;; Both score same.">
+
+<meta itemprop="wordCount" content="261">
+
+
+
+<meta itemprop="keywords" content="" />
+</head>
+<body><div class="container"><header>
+<h1>Data Science Notes</h1>
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    tags: 'ams'
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+</header>
+<div class="global-menu">
+<nav>
+<ul>
+<li><a href="https://bharathravu.github.io/data-science-notes/">Home</a></li></ul>
+</nav>
+</div>
+<div class="content-container">
+<main><h1>Sequence Modeling</h1>
+<ul>
+<li>LSTM is awesome, but not good enough</li>
+<li>Transformers: how and why</li>
+<li>$f(X) \approx y$, where $f$ is the model, X is the input and $y$ is the outcome/prediction</li>
+<li>Sequence Modeling is a problem</li>
+<li>$f:\mathbb{R}^d \mapsto \mathbb{R}$, $\mathbb{R}^d$ contains fixed size $d$ vectors</li>
+<li>can not represent documents a fixed size vector</li>
+<li>Documents are of various lengths</li>
+<li>Not aware of any linear algebra that works on variable dimensionality</li>
+<li>Classic way: bag of words</li>
+<li>Order matters: &ldquo;work to live&rdquo; vs &ldquo;live to work&rdquo;; Both score same.</li>
+<li>Solution would be N-grams dimensionality $V^N$</li>
+<li>Bi-grams (Every pair of possible words)</li>
+<li>Tri-grams (Every combination of three words)</li>
+<li>This way we can distinguish between the two</li>
+<li>English tri-grams: (10^15) dimensions</li>
+<li>All sort of problems with that size of dimensions.</li>
+<li>A natural way to solve this problem is the RNN (Recurrent Neural Network)</li>
+<li>How to calculate $f(x_1,x_2,x_3,\cdots,x_n)$</li>
+<li>A for-loop in math $H_{i+1}=A(H_i,X_I$)</li>
+<li>The problem with RNN is vanishing and exploding gradients<br>
+$H_3= A(A(A(H_0,x_0),x_1),x_2)$<br>
+$A(H,x):=Wx+ZH$<br>
+$H_N=W^N x_0 + W^{N-1} x_1 + &hellip;$</li>
+<li>For 100 words, W^100, $0.9^100=7 \times 10^{-10}$, $1.1^100=189905276$</li>
+<li>In linear algebra, this is about same except we need to think about eigenvalues of the matrix</li>
+<li>Eigenvalues say- how much the matrix is going to grow or shrink vectors when the transformations are applied</li>
+<li>If the eigenvalues are les than one, we see the gradients go to zero. If #\lambda&gt;1$, gradients are going to explode.</li>
+<li>This made RNN extremely difficult, So LSTM to the rescue</li>
+<li>LSTM is a kind of Learning; Here it is not applied recursively on the main hidden vector, it is not like a CNN resnet.</li>
+</ul>
+<div class="edit-meta">
+
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/3_ann/" title="Artificial neural networks"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - Artificial neural networks</a>
+<a class="nav nav-next" href="https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/" title="Statistics">Next - Statistics <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer></footer>
+</main><div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/">Home</a></li>
+
+<li class="parent"><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/">Machine Learning</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/1_linear_regression/">Linear Regression</a></li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/2_logistic_regression/">Logistic Regression</a></li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/3_ann/">Artificial neural networks</a></li>
+<li class="active"><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/6_sequence_modeling/">Sequence Modeling</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/">Statistics</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/1/">Correlation</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/temp/">Temps</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/temp/job_search/">Job-search</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>

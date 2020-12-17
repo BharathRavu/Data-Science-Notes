@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Correlation - Data Science Notes</title>
+<meta name="generator" content="Hugo 0.74.3" />
+<link href="https://bharathravu.github.io/data-science-notes//index.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/1/">
+<link rel="stylesheet" href="https://bharathravu.github.io/data-science-notes/css/theme.min.css">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://bharathravu.github.io/data-science-notes/css/chroma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="https://bharathravu.github.io/data-science-notes/js/bundle.js"></script><style>
+:root {}
+</style>
+<meta property="og:title" content="Correlation" />
+<meta property="og:description" content="We should look at the correlation of our features with our target but also at the correlation between our different features. Correlation is the degree to which things move together The amount of sun and the amount of icecream tend to move together; if one is high, the other also tends to be high and if one is low the other also tends to be low. This is positive correlation." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/1/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Correlation"/>
+<meta name="twitter:description" content="We should look at the correlation of our features with our target but also at the correlation between our different features. Correlation is the degree to which things move together The amount of sun and the amount of icecream tend to move together; if one is high, the other also tends to be high and if one is low the other also tends to be low. This is positive correlation."/>
+<meta itemprop="name" content="Correlation">
+<meta itemprop="description" content="We should look at the correlation of our features with our target but also at the correlation between our different features. Correlation is the degree to which things move together The amount of sun and the amount of icecream tend to move together; if one is high, the other also tends to be high and if one is low the other also tends to be low. This is positive correlation.">
+
+<meta itemprop="wordCount" content="594">
+
+
+
+<meta itemprop="keywords" content="" />
+</head>
+<body><div class="container"><header>
+<h1>Data Science Notes</h1>
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    tags: 'ams'
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+</header>
+<div class="global-menu">
+<nav>
+<ul>
+<li><a href="https://bharathravu.github.io/data-science-notes/">Home</a></li></ul>
+</nav>
+</div>
+<div class="content-container">
+<main><h1>Correlation</h1>
+<ul>
+<li>We should look at the correlation of our features with our target but also at the correlation between our different features.</li>
+<li>Correlation is the degree to which things move together</li>
+<li>The amount of sun and the amount of icecream tend to move together; if one is high, the other also tends to be high and if one is low the other also tends to be low. This is positive correlation.</li>
+<li>Negative correlation: If one is high, other tends to be lower</li>
+<li>No correlation: Imagine how a graph would look unlike</li>
+<li>Correlation is calculated as a single number which ranges between -1 to 1<br>
+$\rho_{XY}=corr(X,Y)$</li>
+<li>$\rho=0$ means no correlation or uncorrelated</li>
+<li>Correlation is a statistical measure of a linear relationship between two variables</li>
+<li>Why should we look at the correlations of our features during the data exploration stage. The answer is that we primarily care about two things
+<ol>
+<li>Strength: Strength of the correlation; it is important because it tells us how much correlation is there</li>
+<li>Direction: direction of the correlation</li>
+</ol>
+</li>
+<li>Our model should include features that are correlated with the target; want to include features whose movement is associated with a big movement of target value; want a correlation that is not close to zero</li>
+<li>Python command to calculate all the correlations between all the features; correlation matrix</li>
+</ul>
+<pre><code>data.corr()
+</code></pre><ul>
+<li>There are multiple ways to calculate a correlation and the default way of doing this calculation is the Pearson correlation; assumption: It is only valid for continuous variables. That means it is valid for dummy variables like whether a property is on cahrles river or not.</li>
+<li>If two features were highly correlated would that be a good thing or a bad thing for our regression Modeling and the answer is it depends</li>
+<li>High correlation between features can be problematic; so this we probably want to discover early on</li>
+<li>Example: Predict bone density using: Age, bodyfat, weight</li>
+<li>Because bodyfat and weight move together you are going to have difficulty telling apart their effects on bone density. It is difficult to see the individual contributions to bone density. One of the features is redundant. This is multicollinearity. Each of these do not provide unique and independent information to the regression</li>
+<li>The problem of multicollinearity means unreliable estimates and nonsensical findings; Simply put, the models start getting confused</li>
+<li>High correlation between features $\ne$ multicollinearity; high correlations don&rsquo;t automatically mean that you have this problem</li>
+<li>We should investigate why high correlations can be an early warning sign.</li>
+<li>Correlation matrix is not a silver data exploration bullet. While it may not answer all our questions but it can give us a bit more perspective and the correlation matrix has its pros and cons</li>
+<li>High correlations don&rsquo;t necessarily imply this problem of multicollinearity</li>
+<li>Correlations
+<ol>
+<li>Continuous data only</li>
+<li>Correlation does not imply causation : just because two things move together doesn&rsquo;t mean that one thing causes another; People who drank water before 1980 were all dead. This does not mean drinking water will kill you.</li>
+<li>Linear relationships only: only checks for linear relationship and it turns out just because there is a low Pearson coefficient does not mean that there is no relationship</li>
+</ol>
+</li>
+<li>Anscombe&rsquo;s quartet:</li>
+</ul>
+<!---
+![Anscombe](/images/Anscombe.png)
+-->
+<ul>
+<li>These four graphs actually have very similar descriptive statistics and a very similar regression, but of course they are showing us completely different relationships. They are showing us that outliers and non-linear relationships often only become apparent after visualizing</li>
+<li>It means it&rsquo;s important to look at these correlations and these descriptive statistics in conjunction with some charts</li>
+<li>To plot all correlation plots between features, use seaborn</li>
+</ul>
+<pre><code>sns.pairplot(data)
+plt.show()
+</code></pre><ul>
+<li></li>
+</ul>
+<div class="edit-meta">
+
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/" title="Statistics"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - Statistics</a>
+<a class="nav nav-next" href="https://bharathravu.github.io/data-science-notes/temp/" title="Temps">Next - Temps <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer></footer>
+</main><div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/">Home</a></li>
+
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/">Machine Learning</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/1_linear_regression/">Linear Regression</a></li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/2_logistic_regression/">Logistic Regression</a></li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/3_ann/">Artificial neural networks</a></li>
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/6_sequence_modeling/">Sequence Modeling</a></li>
+</ul>
+  
+</li>
+
+<li class="parent"><a href="https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/">Statistics</a>
+  
+<ul class="sub-menu">
+<li class="active"><a href="https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/1/">Correlation</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/temp/">Temps</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://bharathravu.github.io/data-science-notes/temp/job_search/">Job-search</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Home title on Data Science Notes</title>
-    <link>https://bharathravu.github.io/data-science-notes/</link>
-    <description>Recent content in Home title on Data Science Notes</description>
+    <title>Machine Learning on Data Science Notes</title>
+    <link>https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/</link>
+    <description>Recent content in Machine Learning on Data Science Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://bharathravu.github.io/data-science-notes/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -46,24 +46,6 @@ Classification  Email: spam / not spam Online transactions: Fraudulent (yes/no) 
       
       <guid>https://bharathravu.github.io/data-science-notes/chapter1-machilelearning/6_sequence_modeling/</guid>
       <description>LSTM is awesome, but not good enough Transformers: how and why $f(X) \approx y$, where $f$ is the model, X is the input and $y$ is the outcome/prediction Sequence Modeling is a problem $f:\mathbb{R}^d \mapsto \mathbb{R}$, $\mathbb{R}^d$ contains fixed size $d$ vectors can not represent documents a fixed size vector Documents are of various lengths Not aware of any linear algebra that works on variable dimensionality Classic way: bag of words Order matters: &amp;ldquo;work to live&amp;rdquo; vs &amp;ldquo;live to work&amp;rdquo;; Both score same.</description>
-    </item>
-    
-    <item>
-      <title>Correlation</title>
-      <link>https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/1/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://bharathravu.github.io/data-science-notes/chapter2-statistical-methods/1/</guid>
-      <description>We should look at the correlation of our features with our target but also at the correlation between our different features. Correlation is the degree to which things move together The amount of sun and the amount of icecream tend to move together; if one is high, the other also tends to be high and if one is low the other also tends to be low. This is positive correlation.</description>
-    </item>
-    
-    <item>
-      <title>Job-search</title>
-      <link>https://bharathravu.github.io/data-science-notes/temp/job_search/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://bharathravu.github.io/data-science-notes/temp/job_search/</guid>
-      <description>Section 1: Artificial Intelligence, Machine Learning, and the New Job Hunting Landscape  hopefully doing work that we enjoy and we find it meaningful and some opportunities for some advancements We are going to work on:  Identifying your big six skills Building an excellent resume LinkedIn Profile and cover letter Building technology into your job research your interviewing skills Networking on the job hunt Negotiating your salary    Section 2: Resumes in a World of AI and Applicant Tracking Systems (ATSs)  Applicant Tracking System (ATS): Software package used by companies to recieve, analyze, and tracking incoming candidates.</description>
     </item>
     
   </channel>
